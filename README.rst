@@ -1,5 +1,5 @@
-vimrst
-======
+1.vimrst
+========
 
 
 auto format reStructuredText section title on write::
@@ -11,3 +11,11 @@ will became ::
 
     vimrst
     ======
+
+
+2.nskeleton
+===========
+
+
+auto sckleton
+

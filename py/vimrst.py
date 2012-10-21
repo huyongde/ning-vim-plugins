@@ -36,7 +36,7 @@ def _formatit(body):
         if not (L1 and L2 and (L1[0] in AD_CHARS) and L1.lstrip(L1[0])==''):
             continue
         # underline must be as long as headline text
-        if len(L1) < len(L2.decode(ENC,'replace')):
+        if len(L1) < 2:
             continue
         # there is no overline; L3 must be blank line; L2 must be not inset
         if not L3 and len(L2)==len(L2.lstrip()):
