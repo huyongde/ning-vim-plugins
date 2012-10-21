@@ -23,6 +23,24 @@ ENC = 'utf-8'
 
 XDEBUG = 0
 
+
+from unicodedata import east_asian_width
+
+def cjk_width(text):
+    return len(text.decode(ENC,'replace').encode("GBK"))
+
+def cjk_width(text):
+    width = 0
+    if not isinstance(text, unicode):
+        text = text.decode(ENC)
+    for char in text:
+        if east_asian_width(char) == 'Na':
+            width += 1
+        else:
+            width += 2
+    return width
+ 
+
 def _formatit(body):
     L1, L2, L3 = '','',''
 
@@ -44,8 +62,8 @@ def _formatit(body):
             gotHead = True
             ad = L1[0]
             if XDEBUG:
-                print L2, len(L2), len(L2.decode(ENC,'replace'))
-            vim.current.buffer[i] = ad * len(L2.decode(ENC,'replace').encode("GBK"))
+                print L2, len(L2), cjk_width(L2)
+            vim.current.buffer[i] = ad * cjk_width(L2)
             #vim.current.buffer[i] = 'xxxxx'
             head = L2.strip()
         # there is overline -- bnode is lnum of overline!
