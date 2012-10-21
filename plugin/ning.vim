@@ -23,7 +23,7 @@ EOF
 endif
 
 
-autocmd BufWritePre * call FormatSectionTitle()
+autocmd BufWritePre *.rst call FormatSectionTitle()
 "noremap <silent>  <C-S-c> :call format_section_title()<CR>
 " auto ChangeToThis
 noremap <C-S-c> :call FormatSectionTitle()<CR>
