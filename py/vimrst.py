@@ -21,6 +21,8 @@ ENC = 'utf-8'
 # ------ L1, blines[i]   -- current line, always underline
 # x y z
 
+XDEBUG = 0
+
 def _formatit(body):
     L1, L2, L3 = '','',''
 
@@ -28,7 +30,8 @@ def _formatit(body):
     for i in xrange(Z):
         L2, L3 = L1, L2
         L1 = body[i].rstrip()
-        print L1
+        if XDEBUG:
+            print L1
         # current line must be underline and title line cannot be blank
         if not (L1 and L2 and (L1[0] in AD_CHARS) and L1.lstrip(L1[0])==''):
             continue
@@ -40,7 +43,8 @@ def _formatit(body):
             #if len(L1) < len(L2.decode(ENC,'replace')): continue
             gotHead = True
             ad = L1[0]
-            print L2, len(L2), len(L2.decode(ENC,'replace'))
+            if XDEBUG:
+                print L2, len(L2), len(L2.decode(ENC,'replace'))
             vim.current.buffer[i] = ad * len(L2.decode(ENC,'replace').encode("GBK"))
             #vim.current.buffer[i] = 'xxxxx'
             head = L2.strip()
@@ -50,13 +54,6 @@ def _formatit(body):
             gotHead = True
             ad = L1[0]*2
             head = L2.strip()
-
-        #if gotHead:
-            #if not ad in ads_levels:
-                #ads_levels[ad] = len(ads_levels)+1
-            #lev = ads_levels[ad]
-            #gotHead = False
-            #L1, L2, L3 = '','',''
 
 @bridged
 def format_section_title():
