@@ -34,7 +34,7 @@ def cjk_width(text):
     if not isinstance(text, unicode):
         text = text.decode(ENC)
     for char in text:
-        if east_asian_width(char) == 'Na':
+        if east_asian_width(char) in  ['Na', 'H']:
             width += 1
         else:
             width += 2
