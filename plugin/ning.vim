@@ -16,6 +16,8 @@ import sys, vim
 if not vim.eval("s:vimrst_dir") in sys.path:
     sys.path.append(vim.eval("s:vimrst_dir"))
 import vimrst
+import rst_imglink
+
 EOF
 
 
@@ -27,3 +29,6 @@ autocmd BufWritePre *.rst call FormatSectionTitle()
 "noremap <silent>  <C-S-c> :call format_section_title()<CR>
 " auto ChangeToThis
 noremap <C-S-c> :call FormatSectionTitle()<CR>
+
+
+command! -nargs=* RstInsertImgLink call RstInsertImgLink( '<args>' )
