@@ -50,7 +50,7 @@ def down_and_gen_link(url, filename):
     if not filename.endswith(ext):
         filename = filename + ext
     if os.path.exists(save_path + filename):
-        DATESTR = time.strftime( '%Y-%m-%d', time.localtime() )
+        DATESTR = time.strftime( '_%Y-%m-%d', time.localtime() )
         filename = filename + DATESTR + ext
 
     path = save_path + filename
@@ -63,11 +63,12 @@ def down_and_gen_link(url, filename):
         width = width/2
         height = height/2
 
-    return'''
+    r = '''
 .. image:: imgs/%s
     :width: %dpx
     :height: %dpx
-''' % (filename, width, height)
+''' % (filename, width, height) 
+    return r.strip()
 
 @bridged
 def rst_insert_img_link(url, filename=''):
