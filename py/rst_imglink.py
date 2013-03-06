@@ -36,15 +36,16 @@ import imghdr
 
 save_path = '/home/ning/idning/blog_and_notes/imgs/'
 
-def down_and_gen_link(url):
+def down_and_gen_link(url, filename):
     data = urllib2.urlopen(url).read()
     
     img = Image.open(cStringIO.StringIO(data))
 
     ext = '.' + imghdr.what(cStringIO.StringIO(data))
 
-    filename = os.path.basename(urlparse(url).path)
-    filename = filename.lower().replace('[^a-z0-9]+', '_')
+    if not filename:
+        filename = os.path.basename(urlparse(url).path)
+        filename = filename.lower().replace('[^a-z0-9]+', '_')
 
     if not filename.endswith(ext):
         filename = filename + ext
@@ -69,9 +70,9 @@ def down_and_gen_link(url):
 ''' % (filename, width, height)
 
 @bridged
-def rst_insert_img_link(url):
+def rst_insert_img_link(url, filename=''):
     url = url.replace('"', '').replace("'", '')
-    lines = down_and_gen_link(url)
+    lines = down_and_gen_link(url, filename)
     lines = lines.split('\n')
     (row, col) = vim.current.window.cursor
 

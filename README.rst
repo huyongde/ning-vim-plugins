@@ -24,12 +24,22 @@ auto sckleton
 
 ::
 
-    :RstInsertImgLink https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQOy_qBSuhdeaORHoMxdR_XOZ2wB4rSoZ8mTS4WSiHKvI3o9ofE
+    RstInsertImg http://datavlab.org/wp-content/uploads/2011/12/map.jpg 
 
+will generate a image with a auto-generated filename::
+
+    .. image:: imgs/map.jpg.jpeg
+        :width: 350px
+        :height: 210px
+
+::
+
+    RstInsertImg http://datavlab.org/wp-content/uploads/2011/12/map.jpg my-map
+ 
 will generate::
 
-    .. image:: imgs/images.jpeg
-        :width: 437px
-        :height: 115px
+    .. image:: imgs/my-map.jpeg
+        :width: 350px
+        :height: 210px
 
 

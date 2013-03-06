@@ -30,5 +30,15 @@ autocmd BufWritePre *.rst call FormatSectionTitle()
 " auto ChangeToThis
 noremap <C-S-c> :call FormatSectionTitle()<CR>
 
+fu! RstInsertImg(url, ...)
+    if a:0 == 1 " ...部分有1个参数
+        call RstInsertImgLink(a:url, a:1) " call python function 
+    else
+        call RstInsertImgLink(a:url, '')  " call python function 
+    endif
+endfunction
 
-command! -nargs=* RstInsertImgLink call RstInsertImgLink( '<args>' )
+
+" vim bridge 不支持变参数.
+"command! -nargs=+ RstInsertImgLink call RstInsertImgLink( <f-args> )
+command! -nargs=+ RstInsertImg call RstInsertImg( <f-args> )
