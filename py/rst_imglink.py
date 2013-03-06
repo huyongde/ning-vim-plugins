@@ -73,7 +73,9 @@ def rst_insert_img_link(url):
     url = url.replace('"', '').replace("'", '')
     lines = down_and_gen_link(url)
     lines = lines.split('\n')
-    vim.current.buffer.append(lines)
+    (row, col) = vim.current.window.cursor
+
+    vim.current.buffer.append(lines, row)
 
 #format_section_title()
 
