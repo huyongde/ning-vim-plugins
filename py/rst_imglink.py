@@ -42,6 +42,8 @@ def down_and_gen_link(url, filename):
     img = Image.open(cStringIO.StringIO(data))
 
     ext = '.' + imghdr.what(cStringIO.StringIO(data))
+    if ext == '.jpeg':
+        ext = '.jpg'
 
     if not filename:
         filename = os.path.basename(urlparse(url).path)
