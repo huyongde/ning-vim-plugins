@@ -72,4 +72,9 @@ auto modify lastmodify on save::
 
     :Last modified: 2013-11-08 15:53:08
 
+4.keyword_check
+===============
+
+check keyword before saving
+
 
