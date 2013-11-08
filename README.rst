@@ -1,26 +1,20 @@
-1.vimrst
-========
+1.rst_format_title
+==================
 
 
-auto format reStructuredText section title on write::
+auto format reStructuredText section title when you save::
 
     vimrst
     ===
 
-will became ::
+will change to ::
 
     vimrst
     ======
 
 
-2.nskeleton
-===========
-
-
-auto sckleton
-
-3.rst_insert_img_link
-=====================
+2.rst_imglink
+=============
 
 ::
 
@@ -41,5 +35,41 @@ will generate::
     .. image:: imgs/my-map.jpeg
         :width: 350px
         :height: 210px
+
+
+3.nskeleton
+===========
+
+auto skeleton
+
+put files in ~/.vim/skeletons/::
+
+    $ tree skeletons/
+    skeletons/
+    |-- cpp.skeleton
+    |-- c.skeleton
+    |-- h.skeleton
+    |-- mkd.skeleton
+    |-- php.skeleton
+    |-- processing.skeleton
+    |-- python.skeleton
+    |-- README_tskeleton.txt
+    |-- rst.skeleton
+    `-- sh.skeleton
+
+    $ cat rst.skeleton 
+    <+FILE_NAME_BASE+>
+    #################################
+
+    :slug: <+FILE_NAME_BASE+>
+    :date: <+DATE+>
+    :author: ning
+    :Last modified: 2013-03-06 14:20:04
+
+    .. contents:: Table of Contents
+
+auto modify lastmodify on save::
+
+    :Last modified: 2013-11-08 15:53:08
 
 

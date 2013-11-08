@@ -4,7 +4,6 @@
 #author : ning
 #date   : 2012-10-20 21:29:37
 
-
 import vim
 from vim_bridge import bridged
 
