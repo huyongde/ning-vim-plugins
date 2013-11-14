@@ -12,22 +12,42 @@ import os, sys
 PWD = os.path.dirname(os.path.realpath(__file__))
 
 
-keywords = file(PWD+'/../keyword').readlines()
-keywords = [k.strip() for k in keywords]
-#print keywords
+def getpattern():
 
-PATTERN = re.compile('|'.join(keywords))
-CHECKPATH = '/home/ning/idning/blog_and_notes/'
+    keywords = file(PWD+'/../keyword').readlines()
+    keywords = [k.strip() for k in keywords]
+    #print keywords
+
+    PATTERN = '|'.join(keywords)
+    #print PATTERN
+    PATTERN = re.compile(PATTERN)
+    return PATTERN
+
+CHECKPATH = '/home/ning/idning/'
+
 
 def _keyword_check(body):
+
     Z = len(body)
+    PATTERN = getpattern()
+    #print Z
+    cnt = 0
     for i in xrange(Z):
-        line = body[i].rstrip()
-        m = re.search(PATTERN, line) 
-        if m:
-            sensitive = m.group(0)
-            lineno = i
-            print '%s in line %s' % (sensitive, lineno)  # tell us what's sensitive
+        line = body[i].strip()
+        try:
+            m = re.search(PATTERN, line) 
+            if m:
+                sensitive = m.group(0)
+                lineno = i
+                if cnt < 20: 
+                    print '%s in line %s' % (sensitive, lineno)  # tell us what's sensitive
+                cnt += 1
+        except:
+            print 'xxxx'
+
+    if cnt:
+        print 'total %d keywords match' % cnt
+    print 'the last line was eaten'
 
         #vim.current.buffer[i] = xxxxx
 
