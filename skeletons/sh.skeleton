@@ -1,0 +1,8 @@
+#!/bin/bash
+#file   : <+FILE_NAME+>
+#author : ning
+#date   : <+DATE+>
+
+DATE=`date +'%Y%m%d%H%M'`
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+

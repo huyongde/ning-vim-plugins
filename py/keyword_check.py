@@ -11,9 +11,7 @@ import re
 import os, sys
 PWD = os.path.dirname(os.path.realpath(__file__))
 
-
 def getpattern():
-
     keywords = file(PWD+'/../keyword').readlines()
     keywords = [k.strip() for k in keywords]
     #print keywords
@@ -24,7 +22,6 @@ def getpattern():
     return PATTERN
 
 CHECKPATH = '/home/ning/idning/'
-
 
 def _keyword_check(body):
 
@@ -48,8 +45,6 @@ def _keyword_check(body):
     if cnt:
         print 'total %d keywords match' % cnt
     print 'the last line was eaten'
-
-        #vim.current.buffer[i] = xxxxx
 
 @bridged
 def keyword_check():

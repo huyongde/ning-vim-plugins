@@ -1,28 +1,25 @@
-if has("win32") || has ('win64')
-    let $VIMHOME = $HOME."/vimfiles/"
-else
-    let $VIMHOME = $HOME."/.vim/"
+if !has('python')
+    echo "Error: Required vim 73 compiled with +python"
+    finish
 endif
 
-function! Replace()
-    let n = min([20, line("$")])
-    keepjumps exe '1,' . n . 's#<+DATE+>#\1' .  strftime('%F %T') . '#e'
-    "Decho "debug message " . &ft. expand('%:t')
-    keepjumps exe '1,' . n . 's#<+FILE_NAME+>#' .  expand('%:t') . '#e'
-    keepjumps exe '1,' . n . 's#<+FILE_NAME_BASE+>#' .  expand('%:t:r') . '#e'
-    keepjumps exe '1,' . n . 's#<+FILE_NAME_U+>#' .  toupper(expand('%:t:r')) . '#e'
-    "keepjumps exe '1,' . n . 's#<+FILE_NAME+>#' .  expand('%:t') . '#e'
-    "call histdel('search', -1)
-endfun
+if !exists('s:nskeleton_did_init')
+    let s:script_path = substitute(expand("<sfile>:p"),'\','/','g')
+    let s:script_dir = substitute(expand("<sfile>:p:h"),'\','/','g')
+    let s:py_dir = s:script_dir.'/../py'
 
-" add templates in templates/ using filetype as file name
-"au BufNewFile * :silent! exec "call Decho('abc')"
-"au BufNewFile * :silent! exec "call Decho('". expand('%:t')  ."')"
-"autocmd BufNewFile *.py 0r ~/.vim/skeletons/s.py | call Replace()
-"autocmd BufNewFile *.mkd 0r ~/.vim/skeletons/s.mkd
-au BufNewFile * :silent! exec ":0r ".$VIMHOME."skeletons/". &ft . ".skeleton" | call Replace()
+python << EOF
+import sys, vim
+if not vim.eval("s:py_dir") in sys.path: sys.path.append(vim.eval("s:py_dir"))
+import nskeleton
+EOF
 
-autocmd BufNewFile *.h 0r ~/.vim/skeletons/h.skeleton | call Replace()
+    let s:nskeleton_did_init= 1
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd BufNewFile * call LoadSkeleton()
 
 
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.

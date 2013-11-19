@@ -1,0 +1,13 @@
+<+FILE_NAME_BASE+>
+#################################
+
+:slug: <+FILE_NAME_BASE+>
+:status: draft
+:date: <+DATE+>
+:tags: all, 
+:category: <+DIR_NAME+>
+:author: ning
+:Last modified: 2013-11-19 17:56:59
+
+.. contents:: Table of Contents
+

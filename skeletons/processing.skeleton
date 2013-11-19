@@ -1,0 +1,22 @@
+//file   : <+FILE_NAME+>
+//author : ning
+//date   : <+DATE+>
+
+import toxi.geom.*;
+import peasy.*;
+
+PeasyCam cam;
+
+
+void setup() {
+  size(600, 600, P3D);
+  cam = new PeasyCam(this, 100);
+}
+
+void draw() {
+  background(0);
+  stroke(255);
+  noFill();
+
+  box(500);
+}

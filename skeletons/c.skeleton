@@ -1,0 +1,13 @@
+/*
+ * file   : <+FILE_NAME+>
+ * author : ning
+ * date   : <+DATE+>
+ */
+
+#include <stdio.h>
+
+
+int main(){
+
+    return 0;
+}
