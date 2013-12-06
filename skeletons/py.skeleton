@@ -9,18 +9,18 @@ import urllib, urllib2
 import os, sys
 import re, time
 import logging
-from pcl import common                                                                                                                                                                                          
+from pcl import common
 
 PWD = os.path.dirname(os.path.realpath(__file__))
 WORKDIR = os.path.join(PWD,  '../') 
-LOGPATH = os.path.join(WORKDIR, 'log/deploy.log')
+LOGPATH = os.path.join(WORKDIR, 'log/<+FILE_NAME_BASE+>.log')
 
 sys.path.append(os.path.join(WORKDIR, 'lib/'))
 
-
 def main():
     """docstring for main"""
-    print PWD
+    logging.debug(PWD)
 
 if __name__ == "__main__":
+    common.parse_args2(LOGPATH)
     main()
