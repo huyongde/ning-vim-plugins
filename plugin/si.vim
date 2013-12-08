@@ -1,6 +1,6 @@
 
 
-func PreviewWord()
+func! PreviewWord()
   if &previewwindow          " don't do this in the preview window
     return
   endif
@@ -20,9 +20,15 @@ func PreviewWord()
     try
        exe "ptag " . w
     catch
+      echom 'ptag got exception'
       silent! exe currentWindow . "wincmd w"
+
+      "pclose "close preview
+      "copen "open quickfix
       return
     endtry
+
+    "cclose "close preview
 
     silent! wincmd P         " jump to preview window
     if &previewwindow        " if we really get there...
@@ -38,14 +44,21 @@ func PreviewWord()
       " Add a match highlight to the word at this position
       hi previewWord term=bold ctermbg=green guibg=green
       exe 'match previewWord "\%' . line(".") . 'l\%' . col(".") . 'c\k*"'
-      "wincmd p           " back to old window(not always)
+
+      wincmd L                  " move to right
+      vertical resize 70        " 70 columns
+      cwindow                   " goto quickfix window
+      if &buftype=="quickfix"
+          wincmd J              " move to bottom
+      endif
+      "wincmd p                 " back to old window(not always)
       silent! exe currentWindow . "wincmd w"
     endif
 
   endif
 endfun
 
-func SetupSI()
+func! SetupSI()
     set updatetime=500
     set previewheight=10
     au! CursorHold *.cpp nested call PreviewWord()
